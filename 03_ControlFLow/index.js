@@ -58,6 +58,96 @@ do {
 
 // For...in
 
+const person = {
+  name: "Mosh",
+  age: 30,
+};
+
+for (let key in person) {
+  console.log(key, person[key]);
+}
+
+const colors = ["red", "green", "blue"];
+
+for (let index in colors) {
+  console.log(index, colors[index]);
+}
+
 // For...of
 
+for (let color of colors) {
+  console.log(color);
+}
+
 // Break and continue..
+
+let k = 0;
+
+while (k <= 10) {
+  if (k === 5) break;
+  console.log(k);
+  k++;
+}
+
+let h = 0;
+
+while (h <= 10) {
+  if (h % 2 === 0) {
+    h++;
+    continue;
+  }
+  console.log(h);
+  h++;
+}
+
+console.log("/////////////////////////////////");
+
+function max(a, b) {
+  return a > b ? a : b;
+}
+
+let result = console.log(max(6, 5));
+
+console.log("/////////////////////////////////");
+
+let width = 1080;
+let height = 1920;
+
+function landscape(width, height) {
+  return width < height;
+}
+
+console.log(landscape(width, height));
+
+console.log("/////////////////////////////////");
+
+function fizzBuzz(input) {
+  if (typeof input != "number") return NaN;
+  if (input % 3 === 0 && input % 5 === 0) return "fizzbuzz";
+  if (input % 3 === 0) return "fizz";
+  if (input % 5 === 0) return "buzz";
+  return input;
+}
+
+console.log(fizzBuzz(7));
+console.log(fizzBuzz(3));
+console.log(fizzBuzz(5));
+console.log(fizzBuzz(false));
+
+console.log("/////////////////////////////////");
+
+// Ex.13
+
+function checkSpeed(speed) {
+  if (speed <= 74) return "ok";
+
+  let temp = speed - 70;
+  let points = Math.floor(temp / 5);
+
+  if (points > 12) return "Your license is suspended";
+  else return points;
+}
+
+console.log(checkSpeed(88));
+
+// Ex.14
