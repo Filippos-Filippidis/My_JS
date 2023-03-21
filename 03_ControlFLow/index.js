@@ -151,3 +151,67 @@ function checkSpeed(speed) {
 console.log(checkSpeed(88));
 
 // Ex.14
+
+showNumbers(10);
+
+function showNumbers(limit) {
+  for (let i = 0; i <= limit; i++) {
+    if (i % 2 === 0) console.log(i, "EVEN");
+    else console.log(i, "ODD");
+
+    const message = i % 2 === 0 ? "EVEN" : "ODD";
+    console.log(i, message);
+  }
+}
+
+// Ex.15
+
+const array = [1, 2, 3, null, undefined, 5];
+
+function countTruthy(array) {
+  let temp = 0;
+  let count = 0;
+  for (let item of array) {
+    if (
+      item !== null &&
+      item !== undefined &&
+      item !== "" &&
+      item !== false &&
+      item !== 0 &&
+      item !== NaN
+    )
+      temp += 1;
+
+    if (item) count += 1;
+  }
+  console.log("TEMP", temp);
+  console.log("COUNT", count);
+}
+countTruthy(array);
+
+// Ex.17
+
+function sum(limit) {
+  let varA = 3;
+  let varB = 5;
+  let count = 0;
+
+  let i = 1;
+  while (varA * i <= limit) {
+    count += varA * i;
+    i++;
+  }
+  console.log(count);
+  let j = 1;
+  while (varB * j <= limit) {
+    count += varB * j;
+    j++;
+  }
+
+  for (let k = 0; k <= limit; k++) if (k % 3 === 0 || k % 5 === 0) sum += k;
+
+  return count;
+}
+console.log(sum(10));
+
+// Ex.18
