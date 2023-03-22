@@ -39,3 +39,5 @@ function Circle(radius) {
 const circle = new Circle(1);
 
 // Objects are dynamic, you can add and remove properties and methods
+
+// Ex 8.
