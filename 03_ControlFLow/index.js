@@ -215,3 +215,49 @@ function sum(limit) {
 console.log(sum(10));
 
 // Ex.18
+
+const marks = [80, 80, 50];
+
+function calculateGrades(marks) {
+  const average = calculateAverage(marks);
+
+  if (average <= 59) return "F";
+  if (average > 60 && average < 69) return "D";
+  if (average >= 70 && average <= 79) return "C";
+  if (average >= 80 && average <= 89) return "B";
+  if (average >= 90) return "A";
+}
+
+console.log(calculateGrades(marks));
+
+function calculateAverage(array) {
+  let average = 0;
+
+  for (let value of array) {
+    average += value;
+  }
+  average /= marks.length;
+  return average;
+}
+
+// Ex.19
+
+showStars(10);
+
+function showStars(rows) {
+  let text = "";
+  for (let i = 1; i <= rows; i++) {
+    text += "*";
+    console.log(text);
+  }
+}
+
+// Ex 20
+
+showPrimes(20);
+
+function showPrimes(limit) {
+  for (let i = 1; i <= limit; i++) {
+    if (i % 2 === 1) console.log(i);
+  }
+}
