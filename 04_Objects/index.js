@@ -120,3 +120,102 @@ const date2 = new Date(2018, 4, 11, 9);
 
 // now.getDate();
 //now.setDate();
+
+const address = {
+  street: "5th Avenue",
+  city: "NYC",
+  zipcode: "123456",
+};
+
+function showAddress(address) {
+  for (let key in address) console.log(key, address[key]);
+}
+
+showAddress(address);
+
+// Ex.16
+
+// Factory Function
+
+function newAddress(street, city, zipCode) {
+  return {
+    street,
+    city,
+    zipCode,
+  };
+}
+
+let ads = newAddress("ef", "Athens", "14551");
+console.log(ads);
+
+// Constructor Function
+
+function aAddress(street, city, zipcode) {
+  this.street = street;
+  this.city = city;
+  this.zipcode = zipcode;
+}
+
+let ad1 = new aAddress("a", "b", "c");
+let ad2 = new aAddress("a", "b", "c");
+console.log(ad1);
+console.log(ad2);
+
+// Ex 17
+// Object Equality
+
+function areEqual(ad1, ad2) {
+  return (
+    ad1.street === ad2.street &&
+    ad1.city === ad2.city &&
+    ad1.zipCode === ad2.zipCode
+  );
+}
+
+console.log(areEqual(ad1, ad2));
+
+function areSame(ad1, ad2) {
+  return ad1 === ad2;
+}
+
+console.log(areSame(ad1, ad2));
+
+// Ex. 18
+
+const blogPost = {
+  title: "t",
+  body: "b",
+  author: "a",
+  views: 10,
+  comments: [
+    { author: "a", body: "b" },
+    { author: "a", body: "b" },
+  ],
+  isLive: true,
+};
+
+console.log(blogPost);
+
+// Ex 19
+
+function draftPost(title, text, author) {
+  this.title = title;
+  this.text = text;
+  this.author = author;
+  this.views = 0;
+  this.comments = [];
+  this.isLive = false;
+}
+
+let post = new draftPost("a", "b", "c");
+console.log(post);
+
+// Ex.20
+
+let priceRanges = [
+  { label: '$', tooltip: 'Inexpensive', minPerPerson:0, maxPerPerson: 10},
+  { label: '$$', tooltip: 'Moderate', minPerPerson:11, maxPerPerson: 20}
+  { label: '$$$', tooltip: 'Expensive', minPerPerson:21, maxPerPerson: 50}
+];
+
+let restaurants = [ {averagePerPerson: 5}]
