@@ -168,3 +168,171 @@ iArray.forEach((number, index) => console.log(index, number));
 /////////////////////////////////////////////////////////////
 
 // Ex 11 - Joining Arrays
+
+const myNumbers = [1, 2, 3];
+const joined = myNumbers.join(",");
+console.log(joined);
+
+const msg = "This is my first message";
+const parts = msg.split(" ");
+console.log(parts);
+
+const combo = parts.join("-");
+console.log(combo);
+
+/////////////////////////////////////////////////////////////
+
+// Ex 12 - Sort Array
+
+const sorting = [2, 4, 1];
+sorting.sort();
+
+console.log(sorting);
+console.log(sorting.reverse());
+
+const nCourses = [
+  { id: 1, name: "Node.js" },
+  { id: 2, name: "Javascript" },
+];
+
+//This wont sort the items
+nCourses.sort();
+console.log(nCourses);
+
+// This will sort the items
+nCourses.sort(function (a, b) {
+  const nameA = a.name.toUpperCase();
+  const nameB = b.name.toUpperCase();
+
+  if (nameA < nameB) return -1;
+  if (nameA < nameB) return 1;
+  return 0;
+});
+
+console.log(nCourses);
+
+/////////////////////////////////////////////////////////////
+
+// Ex. 13 - Testing the elements of an Array
+
+const tNumbers = [1, 2, -1, 3];
+
+// checks every
+const allPos = tNumbers.every(function (value) {
+  return value >= 0;
+});
+
+// checks if at least one element matches the given criteria
+const atLeastOne = tNumbers.some(function (value) {
+  return value >= 0;
+});
+
+console.log(allPos);
+console.log(atLeastOne);
+
+/////////////////////////////////////////////////////////////
+
+// Ex14 - Filtering an Array
+
+const filtered = tNumbers.filter((n) => n >= 0);
+
+console.log(filtered);
+
+/////////////////////////////////////////////////////////////
+
+// Ex. 15 - Mapping an Array
+
+// const items = filtered.map((n) => "<li>" + n + "<li>");
+// console.log(items);
+
+// const html = "<ul" + items.join(" ") + "</ul>";
+// console.log(html);
+
+// const items = filtered.map((n) => "<li>" + n + "<li>");
+// console.log(items);
+
+// Chainning - calling a method which result is immediately used
+// Simple chainning
+
+// const items = tNumbers.filter((n) => n >= 0).map((n) => ({ value: n }));
+
+// console.log(items);
+
+// Complex Chainning
+const items = tNumbers
+  .filter((n) => n >= 0)
+  .map((n) => ({ value: n }))
+  .filter((obj) => obj.value > 1)
+  .map((obj) => obj.value);
+console.log(items);
+
+/////////////////////////////////////////////////////////////
+
+// Ex. 16 - Reducing an Array
+
+// This is the same as
+let sum = 0;
+for (let n of tNumbers) sum += n;
+
+console.log(sum);
+
+// This
+const newSum = tNumbers.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue;
+}, 0);
+
+console.log(newSum);
+
+// Even shorter
+const shortSum = tNumbers.reduce(
+  (accumulator, currentValue) => accumulator + currentValue
+);
+
+console.log(shortSum);
+
+/////////////////////////////////////////////////////////////
+
+// Ex 17 - Array from range
+
+const exNumbers = arrayOfNumbers(-5, 5);
+console.log(exNumbers);
+
+function arrayOfNumbers(min, max) {
+  let theArray = [];
+  for (let i = min; i <= max; i++) {
+    theArray.push(i);
+  }
+  return theArray;
+}
+
+/////////////////////////////////////////////////////////////
+
+// Ex 18
+
+const yos = [1, 2, 3, 4];
+const test = 1;
+
+function includes(array, searchElement) {
+  for (let n of yos) if (n === searchElement) return true;
+  return false;
+}
+
+console.log(includes(yos, test));
+
+/////////////////////////////////////////////////////////////
+
+// Ex 19
+
+const eX = [1, 2, 3, 4];
+const output = except(eX, [4, 5]);
+console.log(output);
+
+function except(zArray, excluded) {
+  let oArray = [];
+  for (let n of zArray) if (!excluded.includes(n)) oArray.push(n);
+  return oArray;
+}
+
+/////////////////////////////////////////////////////////////
+
+// Ex 20
