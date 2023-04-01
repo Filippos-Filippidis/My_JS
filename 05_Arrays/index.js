@@ -336,3 +336,88 @@ function except(zArray, excluded) {
 /////////////////////////////////////////////////////////////
 
 // Ex 20
+
+const mNumbers = [1, 2, 3, 4];
+const outputA = move(mNumbers, 0, 1);
+
+console.log(outputA);
+
+function move(array, index, offset) {
+  const pos = index + offset;
+  if (pos >= array.length || pos < 0) {
+    console.error("invalid offset");
+  }
+  // copy original array
+  const output = [...array];
+  // isolate the element of the array
+  const element = output.splice(index, 1)[0];
+  console.log(element);
+  output.splice(pos, 0, element);
+
+  return output;
+}
+
+/////////////////////////////////////////////////////////////
+
+// Ex 21 - count occurences
+
+const rNumbers = [1, 2, 3, 4];
+const count = countOccurences(numbers, -1);
+
+console.log(count);
+
+function countOccurences(array, searchElement) {
+  // let count = 0;
+  //for (let element of array)
+  //if (element === searchElement)
+  //count++;
+  //return count;
+
+  return array.reduce((accumulator, current) => {
+    const occurence = current === searchElement;
+    console.log(accumulator, current, searchElement);
+    return accumulator + occurence;
+  }, 0);
+}
+
+/////////////////////////////////////////////////////////////
+
+// Ex 22 - Get Max
+
+const max = getMax([3]);
+
+console.log(max);
+
+function getMax(array) {
+  if (array.length === 0) return undefined;
+
+  // let max = array[0];
+
+  // for (let i = 1; i < array.length; i++) if (array[i] > max) max = array[i];
+  // return max;
+  return array.reduce((a, b) => (a > b ? a : b));
+}
+
+/////////////////////////////////////////////////////////////
+
+// Ex 23 - Movies
+
+// All the movies in 2018 with rating >4
+// Sort them by their rating
+// descending order
+// Pick their title
+
+const movies = [
+  { title: "a", year: 2018, rating: 4.5 },
+  { title: "b", year: 2018, rating: 4.7 },
+  { title: "c", year: 2018, rating: 3 },
+  { title: "d", year: 2017, rating: 4.5 },
+];
+
+const titles = movies
+  .filter((m) => m.year === 2018 && m.rating >= 4)
+  .sort((a, b) => a.rating - b.rating)
+  .reverse()
+  .map((m) => m.title);
+
+console.log(titles);
