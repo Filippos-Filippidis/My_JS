@@ -4,6 +4,8 @@ const settings = {
   dimensions: [1080, 1080],
 };
 
+let manager;
+
 let text = "A";
 let fontSize = 1200;
 let fontFamily = "serif";
@@ -38,7 +40,7 @@ const sketch = () => {
     //context.textAlign = "center";
 
     const metrics = context.measureText(text);
-    console.log(metrics);
+    //console.log(metrics);
 
     mx = metrics.actualBoundingBoxLeft * -1;
     my = metrics.actualBoundingBoxAscent * -1;
@@ -60,9 +62,43 @@ const sketch = () => {
   };
 };
 
-// const onKeyUp = (e) => {
-//   text = e.key;
+const onKeyUp = (e) => {
+  text = e.key.toUpperCase();
+  manager.render();
+};
+
+document.addEventListener("keyup", onKeyUp);
+
+const start = async () => {
+  manager = await canvasSketch(sketch, settings);
+};
+start();
+
+/*
+const url = "https://picsum.photos/200";
+
+const loadSomeImage = (url) => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject();
+    img.src = url;
+  });
+};
+
+const start = async () => {
+  const img = await loadSomeImage(url).then((img) => {
+    console.log("image width", img.width);
+  });
+  console.log("this line");
+};
+
+// const start = () => {
+//   loadSomeImage(url).then((img) => {
+//     console.log("image width", img.width);
+//   });
+//   console.log("this line");
 // };
 
-// document.addEventListener("keyup", onKeyUp);
-canvasSketch(sketch, settings);
+start();
+*/
