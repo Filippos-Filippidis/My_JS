@@ -40,8 +40,8 @@ const sketch = ({ context, width, height }) => {
   typeCanvas.height = rows;
 
   return ({ context, width, height }) => {
-    //typeContext.fillStyle = "black";
-    //typeContext.fillRect(0, 0, cols, rows);
+    typeContext.fillStyle = "black";
+    typeContext.fillRect(0, 0, cols, rows);
 
     fontSize = cols;
 
@@ -92,8 +92,6 @@ const sketch = ({ context, width, height }) => {
       context.save();
       context.translate(x, y);
       context.translate(cell * 0.5, cell * 0.5);
-
-      //context.fillRect(0, 0, cell, cell);
 
       context.beginPath();
       context.arc(0, 0, cell * 0.5, 0, Math.PI * 2);
