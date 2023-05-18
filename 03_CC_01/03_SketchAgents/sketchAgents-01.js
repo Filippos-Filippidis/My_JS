@@ -6,11 +6,11 @@ const settings = {
   animate: true,
 };
 
-// const animate = () => {
-//   console.log("DOMETIKA");
-//   requestAnimationFrame(animate);
-// };
-// animate();
+const animate = () => {
+  console.log("DOMETIKA");
+  requestAnimationFrame(animate);
+};
+animate();
 
 const sketch = ({ context, width, height }) => {
   const agents = [];
