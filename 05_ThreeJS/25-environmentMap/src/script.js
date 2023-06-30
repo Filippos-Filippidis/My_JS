@@ -2,17 +2,20 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import * as dat from "lil-gui";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 
 // Loaders
 
 const gltfLoader = new GLTFLoader();
 const cubeTextureLoader = new THREE.CubeTextureLoader();
+const rgbeLoader = new RGBELoader();
 
 /**
  * Base
  */
 // Debug
 const gui = new dat.GUI();
+const global = {};
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
@@ -24,25 +27,53 @@ const scene = new THREE.Scene();
 
 const updateAllMaterials = () => {
   scene.traverse((child) => {
-    console.log(child);
+    if (child.isMesh && child.material.isMeshStandardMaterial) {
+      child.material.envMapIntensity = global.envMapIntensity;
+    }
   });
 };
 
 /**
  * Environment map
  */
-// LDR cube texture
-const environmentMap = cubeTextureLoader.load([
-  "/environmentMaps/0/px.png",
-  "/environmentMaps/0/nx.png",
-  "/environmentMaps/0/py.png",
-  "/environmentMaps/0/ny.png",
-  "/environmentMaps/0/pz.png",
-  "/environmentMaps/0/nz.png",
-]);
 
-scene.environment = environmentMap;
-scene.background = environmentMap;
+// Background Blurriness. If env map is low res increase blur
+scene.backgroundBlurriness = 0;
+scene.backgroundIntensity = 1;
+
+gui.add(scene, "backgroundBlurriness").min(0).max(1).step(0.001);
+gui.add(scene, "backgroundIntensity").min(0).max(10).step(0.001);
+
+// Global Intensity
+global.envMapIntensity = 1;
+gui
+  .add(global, "envMapIntensity")
+  .min(0)
+  .max(10)
+  .step(0.001)
+  .onChange(updateAllMaterials);
+
+// Environment Map v.1
+// LDR cube texture
+// const environmentMap = cubeTextureLoader.load([
+//   "/environmentMaps/0/px.png",
+//   "/environmentMaps/0/nx.png",
+//   "/environmentMaps/0/py.png",
+//   "/environmentMaps/0/ny.png",
+//   "/environmentMaps/0/pz.png",
+//   "/environmentMaps/0/nz.png",
+// ]);
+
+// scene.environment = environmentMap;
+// scene.background = environmentMap;
+
+// HDR (RGBE) Equirectangular Map v.2 - Much heavier to load and render due to file size
+rgbeLoader.load("/environmentMaps/0/2k.hdr", (environmentMap) => {
+  environmentMap.mapping = THREE.EquirectangularReflectionMapping;
+
+  scene.background = environmentMap;
+  scene.environment = environmentMap;
+});
 
 /**
  * Torus Knot
